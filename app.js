@@ -11,6 +11,7 @@ const usersRouter = require('./routes/users');
 
 const app = express();
 
+// MongoDB Connection
 mongoose.connect("mongodb://localhost:27017/cosplay-list", {
   useNewUrlParser: true,
   useUnifiedTopology: true
