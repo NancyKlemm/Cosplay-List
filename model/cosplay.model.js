@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const { cosplaySchema } = require("../model/cosplay.schema");
-const { cosplayNotFound } = require('./middleware/error.handler');
+const { cosplayNotFound } = require('../middleware/error.handler');
 
 const Cosplay = mongoose.model("Cosplay", cosplaySchema);
 

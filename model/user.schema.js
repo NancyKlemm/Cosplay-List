@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 const bcrypt = require("bcrypt")
 
-const { UserRoles } = require("../lib/security/roles")
+const { userRoles } = require("../lib/security/roles")
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -20,11 +20,20 @@ const userSchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        enum: Object.values(UserRoles),
-        default: UserRoles.USER
+        enum: Object.values(userRoles),
+        default: userRoles.USER
     }
 
 })
+
+// beim modifizieren des Passwortes wird es gehasht
+userSchema.pre("save", async function (next) {
+    const user = this;
+    if (user.isModified("password")) {
+        user.password = await bcrypt.hash(user.password, 10);
+    }
+    next();
+});
 
 // beim Update des Passworts wird es jedesmal gehasht
 userSchema.pre("findOneAndUpdate", async function (next) {

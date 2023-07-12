@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 
 const cosplaySchema = new mongoose.Schema({
-    cosplay: {
+    character: {
         type: String,
         required: true
     },

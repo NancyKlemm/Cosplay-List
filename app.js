@@ -5,16 +5,20 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require("mongoose")
 const cors = require("cors")
+require("dotenv").config()
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const cosplayRouter = require('./routes/cosplays')
 
 const { errorHandler } = require('./middleware/error.handler');
 
 const app = express();
 
+const MongoDBConnection = process.env.MONGO_CONNECTION
+
 // MongoDB Connection
-mongoose.connect("mongodb://localhost:27017/cosplay-list", {
+mongoose.connect(MongoDBConnection, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(() => {
@@ -32,6 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/cosplays', cosplayRouter)
 
 app.use(errorHandler)
 
