@@ -37,7 +37,7 @@ userSchema.pre("save", async function (next) {
 
 // beim Update des Passworts wird es jedesmal gehasht
 userSchema.pre("findOneAndUpdate", async function (next) {
-    const update =this.getUpdate()
+    const update = this.getUpdate()
     if(update.password) {
         try {
             const hashedPassword = await bcrypt.hash(update.password, 10)

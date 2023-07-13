@@ -6,8 +6,8 @@ const { cosplayNotFound } = require('../middleware/error.handler');
 const Cosplay = mongoose.model("Cosplay", cosplaySchema);
 
 // Cosplay erstellen
-async function createCosplay(userData) {
-    return await Cosplay.create(userData);
+async function createCosplay(userId, userData) {
+    return await Cosplay.create(userId,userData); 
 }
 
 // Alles Cosplays finden
@@ -19,6 +19,11 @@ async function getAllCosplays() {
 async function getSingleCosplay(id) {
     await cosplayNotFound(Cosplay, id)
     return await Cosplay.findById(id);
+}
+
+// Die Cosplays des jeweiligen Users finden
+async function getUserCosplays(id){
+    return await Cosplay.find({user: id})
 }
 
 // ein bestimmtes Cosplay finden und updaten
@@ -37,6 +42,7 @@ module.exports = {
     Cosplay,
     createCosplay,
     getAllCosplays,
+    getUserCosplays,
     getSingleCosplay,
     updateCosplay,
     deleteCosplay,

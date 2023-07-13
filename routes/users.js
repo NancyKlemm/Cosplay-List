@@ -23,13 +23,16 @@ router.get("/", authenticateToken, function (req, res, next) {
     res.send("respond with a resource");
 });
 
+// Route ist nur für Admin bestimmt
 router.get("/all", authenticateToken, protectRoute, httpGetAllUsers)
 
-
+// Sign up
 router.post("/signup", validationInputs(userValidationRules.signup), httpCreateUser)
 
+// Login
 router.post("/login", validationInputs(userValidationRules.login), httpAuthenticateUser)
 
+// CRUD für einzelne User
 router
     .use(authenticateToken)
     .route("/:id")

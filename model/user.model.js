@@ -3,6 +3,10 @@ const mongoose = require("mongoose");
 const { userRoles } = require("../lib/security/roles");
 const { userSchema } = require("./user.schema");
 const { userNotFound } = require("../middleware/error.handler");
+const { validateToken } = require("../lib/security/token");
+require("dotenv").config()
+
+const secret = process.env.SECRET
 
 const User = mongoose.model("User", userSchema);
 
@@ -45,17 +49,19 @@ async function updateUser(id, data) {
 }
 
 // bestimmten User finden und löschen
-async function deleteUser(id) {
-    const user = await userNotFound(User, id);
+async function deleteUser(id, token) {
+   const user = await userNotFound(User, id);
+   const admin = await validateToken(token, secret)
+   console.log(admin.role);
     // nur der Admin kann User löschen => sonst Error
-    if (user.role !== userRoles.ADMIN) {
-        const error = new error(
+    if (admin.role !== userRoles.ADMIN) {
+        const error = new Error(
             "Insufficient authorization - You can't delete other users!"
         );
         error.statusCode = 403;
         throw error;
     }
-    await User.findByIdAndDelete({ _id: id });
+    await User.findByIdAndDelete(id);
 }
 
 module.exports = {

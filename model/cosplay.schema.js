@@ -1,4 +1,7 @@
 const mongoose = require("mongoose")
+const { userSchema } = require("./user.schema")
+
+const User = mongoose.model("User", userSchema)
 
 const cosplaySchema = new mongoose.Schema({
     character: {
@@ -17,6 +20,11 @@ const cosplaySchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true
+    }
    
 
 })

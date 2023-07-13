@@ -2,7 +2,7 @@
 async function userNotFound(Model, id) {
     const user = await Model.findOne({ _id: id });
     if (!user) {
-        consterror = new Error("User not found!");
+        const error = new Error("User not found!");
         error.statusCode = 404;
         throw error;
     }
@@ -12,7 +12,7 @@ async function userNotFound(Model, id) {
 // Cosplay gefunden, sonst Error 404
 async function cosplayNotFound(Model, id) {
     const cosplay = await Model.findOne({ _id: id });
-    if (!user) {
+    if (!cosplay) {
         const error = new Error("Cosplay not found!");
         error.statusCode = 404;
         throw error;

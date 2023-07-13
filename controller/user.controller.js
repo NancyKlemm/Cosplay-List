@@ -81,7 +81,9 @@ async function httpUpdateUser(req, res, next) {
 async function httpDeleteUser(req, res, next) {
     try {
         const { id } = req.params;
-        await deleteUser(id);
+        const token = req.headers.authorization
+        console.log(token);
+        await deleteUser(id, token);
         res.sendStatus(204);
     } catch (error) {
         next(error);
