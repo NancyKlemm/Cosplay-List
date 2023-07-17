@@ -7,7 +7,7 @@
 - bestimmte Zugriffsrechte mit Authentifizierung
 - Verbindung zweier Datenbanken durch das Many to Many Prinzip
 
-![Coslist](../Cosplay-List/public/images/excalidraw.png)
+![Coslist](../Cosplay-List/images/excalidraw.png)
 
 ### Funktionen der API
 
