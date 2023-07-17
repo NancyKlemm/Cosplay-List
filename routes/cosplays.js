@@ -15,20 +15,21 @@ const {
     protectRoute,
 } = require("../middleware/user.validation");
 
+// alle Cosplays aller User werden dem Admin angezeigt
 router.get("/all", authenticateToken, protectRoute, httpGetAllCosplays);
 
-router.post("/create", authenticateToken, httpCreateCosplay);
+// alle Cosplays eines bestimmten Users werden angezeigt
+router.route("/:id").get(authenticateToken, httpGetUserCosplays); // User ID
 
+// Cosplay wird erstellt
+router.post("/create", authenticateToken, httpCreateCosplay); // User ID
+
+// CRUD für einzelne Cosplays
 router
     .use(authenticateToken)
-    .route("/:id")
+    .route("/owncosplays/:id") // Cosplay ID
     .get(httpGetSingleCosplay)
     .put(httpUpdateCosplay)
     .delete(httpDeleteCosplay);
-
-router
-    .use(authenticateToken)
-    .route("/owncosplays/:id")
-    .get(httpGetUserCosplays);
 
 module.exports = router;

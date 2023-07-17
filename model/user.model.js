@@ -44,8 +44,6 @@ async function getSingleUser(id) {
 async function updateUser(id, data) {
     await userNotFound(User, id);
     return await User.findByIdAndUpdate({ _id: id }, data, { new: true });
-
-    // Nur wenn Token des jeweiligen users true oder Admin => dann updaten
 }
 
 // bestimmten User finden und löschen

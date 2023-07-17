@@ -9,16 +9,6 @@ const {
 } = require("../model/cosplay.model");
 
 // Cosplay erstellen
-// async function httpCreateCosplay(req, res, next) {
-//     try {
-//         const userData = req.body;
-//         const newCosplay = await createCosplay(userData);
-//         res.json(newCosplay);
-//     } catch (error) {
-//         next(error);
-//     }
-// }
-
 async function httpCreateCosplay(req, res, next) {
     try {
         const userData = req.body;
@@ -64,7 +54,8 @@ async function httpGetUserCosplays( req,res,next){
 async function httpUpdateCosplay(req, res, next) {
     try {
         const { id } = req.params;
-        const updatedCosplay = await updateCosplay(id, req.body);
+        const userData = req.body
+        const updatedCosplay = await updateCosplay(id,userData);
         res.json(updatedCosplay);
     } catch (error) {
         next(error);
