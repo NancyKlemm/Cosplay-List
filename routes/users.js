@@ -19,9 +19,9 @@ const {
 } = require("../middleware/user.validation");
 
 /* GET users listing. */
-router.get("/", authenticateToken, function (req, res, next) {
-    res.send("respond with a resource");
-});
+// router.get("/", authenticateToken, function (req, res, next) {
+//     res.send("respond with a resource");
+// });
 
 // Route ist nur für Admin bestimmt
 router.get("/all", authenticateToken, protectRoute, httpGetAllUsers)

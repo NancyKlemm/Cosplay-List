@@ -12,8 +12,8 @@ const {
 async function httpCreateCosplay(req, res, next) {
     try {
         const userData = req.body;
-        const userId = req.user.id
-        const newCosplay = await createCosplay(userId, userData);
+        // const userId = req.user.id
+        const newCosplay = await createCosplay(userData);
         res.json(newCosplay);
     } catch (error) {
         next(error);

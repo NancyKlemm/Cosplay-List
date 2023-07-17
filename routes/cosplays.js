@@ -19,15 +19,15 @@ const {
 router.get("/all", authenticateToken, protectRoute, httpGetAllCosplays);
 
 // alle Cosplays eines bestimmten Users werden angezeigt
-router.route("/:id").get(authenticateToken, httpGetUserCosplays); // User ID
+router.route("/user/:id").get(authenticateToken, httpGetUserCosplays); // User ID
 
 // Cosplay wird erstellt
-router.post("/create", authenticateToken, httpCreateCosplay); // User ID
+router.post("/", authenticateToken, httpCreateCosplay);
 
 // CRUD für einzelne Cosplays
 router
     .use(authenticateToken)
-    .route("/owncosplays/:id") // Cosplay ID
+    .route("/:id") // Cosplay ID
     .get(httpGetSingleCosplay)
     .put(httpUpdateCosplay)
     .delete(httpDeleteCosplay);
