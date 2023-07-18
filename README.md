@@ -5,7 +5,7 @@
 - Eine API für Cosplayer die es ihnen ermöglicht den Überblick über ihre Cosplays zu behalten
 - Berücksichtigung der Validierung der Userdaten 
 - bestimmte Zugriffsrechte mit Authentifizierung
-- Verbindung zweier Datenbanken durch das Many to Many Prinzip
+- Verbindung zweier Collections einer Datenbank durch das Many to Many Prinzip
 
 ![Coslist](./public/images/excalidraw.png)
 
